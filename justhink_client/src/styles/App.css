@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-dark: #1E2121;
+    --color-light: #E6E1FA;
+    --color-light-accent: #EBE7FC;
+    --color-purple-accent: #AD9BF4;
+    --color-purple-noactive: #AFA7CF;
+    --color-purple-card: #796999;
+
+    --card-radius: 30px;
+
+    --container-width: 1300px;
+    --container-padding-x: 15px;
+
+    --transition-duration: 0.2s;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body {
+    background-color: var(--color-dark);
+    color: var(--color-purple-noactive)
+}
+
+/* .App {
+    max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+    margin-inline: auto;
+    padding-inline: var(--container-width);
+} */
