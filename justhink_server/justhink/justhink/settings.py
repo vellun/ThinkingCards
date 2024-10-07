@@ -1,12 +1,27 @@
+import os
 from pathlib import Path
+
+import dotenv
+
+dotenv.load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-4^l=$qa%bh00fjaw&!rnk4b^6=k+g^z@)m)y--faj5lq&i(bh#"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", default="reallysecret")
 
-DEBUG = True
+TRUE_VALUES = (
+    "true",
+    "yes",
+    "1",
+    "y",
+)
 
-ALLOWED_HOSTS = []
+DEBUG = os.getenv("DJANGO_DEBUG", default="False").lower() in TRUE_VALUES
+
+ALLOWED_HOSTS = os.getenv(
+    "DJANGO_ALLOWED_HOSTS",
+    default="localhost,127.0.0.1,[::1]",
+).split(",")
 
 
 INSTALLED_APPS = [
@@ -16,6 +31,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "cards.apps.CardsConfig",
+    "deck.apps.DeckConfig",
+    "core.apps.CoreConfig",
 ]
 
 MIDDLEWARE = [
@@ -27,6 +46,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+if DEBUG:
+    MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
+    INSTALLED_APPS.append("debug_toolbar")
 
 ROOT_URLCONF = "justhink.urls"
 
@@ -57,20 +80,24 @@ DATABASES = {
 }
 
 
+AUTH_PWD_MODULE = "django.contrib.auth.password_validation."
+
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": f"{AUTH_PWD_MODULE}UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": f"{AUTH_PWD_MODULE}MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": f"{AUTH_PWD_MODULE}CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": f"{AUTH_PWD_MODULE}NumericPasswordValidator",
     },
 ]
+
+AUTH_USER_MODEL = "core.User"
 
 
 LANGUAGE_CODE = "ru"
@@ -85,3 +112,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ]
+}

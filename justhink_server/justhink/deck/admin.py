@@ -1,3 +1,11 @@
-from django.contrib import admin
+import django.contrib
 
-# Register your models here.
+import deck.models
+
+
+@django.contrib.admin.register(deck.models.Deck)
+class DeckAdmin(django.contrib.admin.ModelAdmin):
+    list_display = (deck.models.Deck.name.field.name,)
+
+
+__all__ = []
