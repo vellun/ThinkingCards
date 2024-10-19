@@ -17,7 +17,7 @@ const CardSlider = () => {
 
   async function fetchCards() {
     const response = await axios.get(
-      "http://127.0.0.1:8000/api/v1/decks/1/cards/"
+      "http://127.0.0.1:8000/api/decks/1/cards/"
     );
     console.log(response.data)
   }

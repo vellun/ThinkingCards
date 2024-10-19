@@ -1,3 +1,4 @@
+import datetime
 import os
 from pathlib import Path
 
@@ -20,7 +21,7 @@ DEBUG = os.getenv("DJANGO_DEBUG", default="False").lower() in TRUE_VALUES
 
 ALLOWED_HOSTS = os.getenv(
     "DJANGO_ALLOWED_HOSTS",
-    default="localhost,127.0.0.1,[::1]",
+    default="*",
 ).split(",")
 
 
@@ -31,10 +32,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
     "cards.apps.CardsConfig",
     "deck.apps.DeckConfig",
     "core.apps.CoreConfig",
+    "rest_framework",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -45,6 +47,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 if DEBUG:
@@ -117,5 +120,16 @@ REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
-    ]
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": datetime.timedelta(days=1),
+}
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWS_CREDENTIALS = True 

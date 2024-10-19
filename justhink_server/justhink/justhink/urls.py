@@ -3,7 +3,9 @@ import justhink.routers
 from django.conf import settings
 from django.contrib import admin
 
-API_PREFIX = "api/v1/"
+import auth.urls
+
+API_PREFIX = "api/"
 
 urlpatterns = [
     django.urls.path("admin/", admin.site.urls),
@@ -13,6 +15,8 @@ urlpatterns = [
     django.urls.path(
         API_PREFIX, django.urls.include(justhink.routers.card_router.urls)
     ),
+    django.urls.path(API_PREFIX + "user/", django.urls.include(auth.urls)),
+    # django.urls.path(API_PREFIX + "auth/", django.urls.include("rest_framework.urls")),
 ]
 
 
