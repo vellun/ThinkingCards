@@ -1,8 +1,10 @@
 import React from "react";
 import Slider from "react-slick";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classes from "./CardSlider.module.css";
 import axios from "axios";
+import CardService from "../../../API/CardService";
+import { useParams } from "react-router-dom";
 
 const cards = [
   "Часть тела человека или животного",
@@ -13,14 +15,18 @@ const cards = [
 ];
 
 const CardSlider = () => {
-//   const [cards, setCards] = useState([]);
+  const [cardsList, setCardsList] = useState([]);
+
+  const params = useParams()
 
   async function fetchCards() {
-    const response = await axios.get(
-      "http://127.0.0.1:8000/api/decks/1/cards/"
-    );
-    console.log(response.data)
+    const response = await CardService.getById(params.id)
+    setCardsList(response.data);
   }
+
+  useEffect(() => {
+    fetchCards();
+  }, []);
 
   const [cardIndex, setCardIndex] = useState(0);
 
@@ -34,22 +40,24 @@ const CardSlider = () => {
   };
 
   return (
-    <div> <button onClick={fetchCards}>get cards</button>
-    <Slider className="slider" {...settings}>
-      {cards.map((card, idx) => (
-        <div>
-          <div
-            className={
-              idx === cardIndex
-                ? `${classes.card} ${classes.activeCard}`
-                : classes.card
-            }
-          >
-            <div className={classes.cardContent}>{card}</div>
+    <div>
+      {" "}
+      <button onClick={fetchCards}>get cards</button>
+      <Slider className="slider" {...settings}>
+        {cardsList.map((card, idx) => (
+          <div key={idx}>
+            <div
+              className={
+                idx === cardIndex
+                  ? `${classes.card} ${classes.activeCard}`
+                  : classes.card
+              }
+            >
+              <div className={classes.cardContent}>{card.text}</div>
+            </div>
           </div>
-        </div>
-      ))}
-    </Slider>
+        ))}
+      </Slider>
     </div>
   );
 };

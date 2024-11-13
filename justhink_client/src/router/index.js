@@ -3,6 +3,7 @@ import Deck from "../pages/Deck";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
+import Lobby from "../pages/Lobby";
 
 function Logout() {
   localStorage.clear();
@@ -19,5 +20,6 @@ export const routes = [
   { path: "/login", element: <Login /> },
   { path: "/logout", element: <Logout /> },
   { path: "/register", element: <RegisterAndLogout /> },
-  { path: "/deck", element: <Deck /> },
+  { path: "/deck/:id", element: <Deck /> },
+  { path: "/lobby/:uid", element: <Lobby /> },
 ];

@@ -56,10 +56,12 @@ if DEBUG:
 
 ROOT_URLCONF = "justhink.urls"
 
+TEMPLATES_DIRS = BASE_DIR / "templates"
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [TEMPLATES_DIRS],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -83,22 +85,34 @@ DATABASES = {
 }
 
 
-AUTH_PWD_MODULE = "django.contrib.auth.password_validation."
-
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": f"{AUTH_PWD_MODULE}UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".UserAttributeSimilarityValidator",
     },
     {
-        "NAME": f"{AUTH_PWD_MODULE}MinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".MinimumLengthValidator",
     },
     {
-        "NAME": f"{AUTH_PWD_MODULE}CommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".CommonPasswordValidator",
     },
     {
-        "NAME": f"{AUTH_PWD_MODULE}NumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".NumericPasswordValidator",
     },
 ]
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
+}
 
 AUTH_USER_MODEL = "core.User"
 
@@ -110,7 +124,6 @@ TIME_ZONE = "Europe/Moscow"
 USE_I18N = True
 
 USE_TZ = True
-
 
 STATIC_URL = "static/"
 
@@ -132,4 +145,4 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWS_CREDENTIALS = True 
+CORS_ALLOWS_CREDENTIALS = True

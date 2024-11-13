@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import admin
 
 import auth.urls
+import core.views
 
 API_PREFIX = "api/"
 
@@ -17,6 +18,16 @@ urlpatterns = [
     ),
     django.urls.path(API_PREFIX + "user/", django.urls.include(auth.urls)),
     # django.urls.path(API_PREFIX + "auth/", django.urls.include("rest_framework.urls")),
+    django.urls.path(
+        "lobby-id/",
+        core.views.LobbyIdAPIView.as_view(),
+        name="get-lobby-id",
+    ),
+    django.urls.path(
+        "lobby/<str:uid>",
+        core.views.LobbyAPIView.as_view(),
+        name="lobby",
+    ),
 ]
 
 
