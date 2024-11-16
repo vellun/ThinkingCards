@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom";
-import Deck from "../pages/Deck";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
+import DeckId from "../pages/DeckId";
+import Decks from "../pages/Decks";
 import Home from "../pages/Home";
 import Lobby from "../pages/Lobby";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 function Logout() {
   localStorage.clear();
@@ -20,6 +21,7 @@ export const routes = [
   { path: "/login", element: <Login /> },
   { path: "/logout", element: <Logout /> },
   { path: "/register", element: <RegisterAndLogout /> },
-  { path: "/deck/:id", element: <Deck /> },
+  { path: "/decks", element: <Decks /> },
+  { path: "/decks/:id", element: <DeckId /> },
   { path: "/lobby/:uid", element: <Lobby /> },
 ];

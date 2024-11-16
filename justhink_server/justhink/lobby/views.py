@@ -3,6 +3,7 @@ import asgiref
 import channels
 from rest_framework import views
 from rest_framework import response
+from rest_framework import exceptions
 import django.core.cache
 
 
@@ -22,8 +23,9 @@ class LobbyAPIView(views.APIView):
         users = django.core.cache.cache.get(f"lobby-{uid}")
 
         if not users:
-            pass
-            # TODO return error
+            raise exceptions.NotFound(
+                detail="Lobby does not exist"
+            )
 
         cur_user = request.user.username
 

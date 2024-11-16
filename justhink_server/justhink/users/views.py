@@ -20,6 +20,6 @@ class UserInfoView(APIView):
         return Response(
             {
                 "username": username,
-                "role": users.get(username, None) if users else {},
+                "role": users.get(username, None) if users else None,
             }
         )

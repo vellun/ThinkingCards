@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { useState, useEffect } from "react";
 import classes from "./CardSlider.module.css";
 import axios from "axios";
-import CardService from "../../../API/CardService";
+import DeckService from "../../../API/DeckService";
 import { useParams } from "react-router-dom";
 
 const cards = [
@@ -20,7 +20,7 @@ const CardSlider = () => {
   const params = useParams()
 
   async function fetchCards() {
-    const response = await CardService.getById(params.id)
+    const response = await DeckService.getById(params.id)
     setCardsList(response.data);
   }
 
