@@ -40,12 +40,12 @@ class Deck(models.Model):
         related_name="decks",
     )
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = "колода"
         verbose_name_plural = "колоды"
+
+    def __str__(self):
+        return self.name
 
 
 __all__ = [Deck]

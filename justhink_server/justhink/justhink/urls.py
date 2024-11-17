@@ -18,6 +18,9 @@ urlpatterns = [
     django.urls.path(
         API_PREFIX, django.urls.include(justhink.routers.card_router.urls)
     ),
+    django.urls.path(
+        API_PREFIX, django.urls.include(justhink.routers.group_router.urls)
+    ),
     django.urls.path(API_PREFIX + "user/", django.urls.include(auth.urls)),
     # django.urls.path(API_PREFIX + "auth/", django.urls.include("rest_framework.urls")),
     django.urls.path(

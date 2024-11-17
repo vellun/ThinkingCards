@@ -23,5 +23,7 @@ export const routes = [
   { path: "/register", element: <RegisterAndLogout /> },
   { path: "/decks", element: <Decks /> },
   { path: "/decks/:id", element: <DeckId /> },
+  // { path: "/groups", element: <Decks /> },
+  // { path: "/groups/:id", element: <DeckId /> },
   { path: "/lobby/:uid", element: <Lobby /> },
 ];

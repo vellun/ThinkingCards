@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "deck.apps.DeckConfig",
     "lobby.apps.LobbyConfig",
     "users.apps.UsersConfig",
+    "groups.apps.GroupsConfig",
     "core.apps.CoreConfig",
     "rest_framework",
     "corsheaders",

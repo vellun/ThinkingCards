@@ -17,12 +17,12 @@ class Card(django.db.models.Model):
         on_delete=django.db.models.CASCADE,
     )
 
-    def __str__(self):
-        return self.text
-
     class Meta:
         verbose_name = "карта"
         verbose_name_plural = "карты"
+
+    def __str__(self):
+        return self.text
 
 
 __all__ = [Card]
