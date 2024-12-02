@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import api from "../api";
-import "../styles/Form.css"
+import "../styles/Form.css";
 
 const LoginForm = ({ route, method }) => {
   const [username, setUsername] = useState("");
@@ -10,6 +10,8 @@ const LoginForm = ({ route, method }) => {
   const navigate = useNavigate();
 
   const name = method === "login" ? "Вход" : "Регистрация";
+  const linkname = method === "login" ? "Регистрация" : "Вход";
+  const linkhref = method === "login" ? "/register" : "/login";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ const LoginForm = ({ route, method }) => {
       alert(error);
     }
   };
- 
+
   return (
     <form onSubmit={handleSubmit} className="form-container">
       <h1>{name}</h1>
@@ -46,6 +48,7 @@ const LoginForm = ({ route, method }) => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Пароль"
       ></input>
+      <a className="form-link" href={linkhref}>{linkname}</a>
       <button className="form-button" type="submit">
         {name}
       </button>

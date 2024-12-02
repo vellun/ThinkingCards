@@ -26,6 +26,7 @@ ALLOWED_HOSTS = os.getenv(
 
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -34,6 +35,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "cards.apps.CardsConfig",
     "deck.apps.DeckConfig",
+    "lobby.apps.LobbyConfig",
+    "users.apps.UsersConfig",
+    "groups.apps.GroupsConfig",
     "core.apps.CoreConfig",
     "rest_framework",
     "corsheaders",
@@ -76,6 +80,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "justhink.wsgi.application"
 
+ASGI_APPLICATION = "justhink.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 DATABASES = {
     "default": {
@@ -115,7 +129,6 @@ CACHES = {
 }
 
 AUTH_USER_MODEL = "core.User"
-
 
 LANGUAGE_CODE = "ru"
 

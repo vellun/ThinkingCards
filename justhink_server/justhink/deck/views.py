@@ -16,7 +16,6 @@ class DeckViewSet(rest_framework.viewsets.ModelViewSet):
     permission_classes = [deck.permissions.IsDeckOwnerOrReadOnly]
 
     def get_permissions(self):
-        # print(self.request.user)
         if self.request.method not in rest_framework.permissions.SAFE_METHODS:
             self.permission_classes = [
                 rest_framework.permissions.IsAuthenticated

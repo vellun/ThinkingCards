@@ -11,6 +11,7 @@ class DeckSerializer(rest_framework.serializers.ModelSerializer):
     class Meta:
         model = deck.models.Deck
         fields = (
+            deck.models.Deck.id.field.name,
             deck.models.Deck.name.field.name,
             deck.models.Deck.author.field.name,
             deck.models.Deck.is_public.field.name,

@@ -1,0 +1,15 @@
+.myBtn {
+    padding: 5px 15px;
+    color: var(--color-purple-accent);
+    border-radius: var(--card-radius);
+    font-size: 14px;
+    background: transparent;
+    border: 2px solid var(--color-purple-accent);
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 700;
+}
+
+.myBtn:hover {
+    background-color: aliceblue;
+}
