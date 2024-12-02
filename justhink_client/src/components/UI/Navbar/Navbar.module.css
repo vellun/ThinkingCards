@@ -1,7 +1,32 @@
 .Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 20px;
+    padding: 0 20px 0 20px;
+    margin-bottom: 20px;
 
 }
 
-.HeaderLogo {
-    
+.HeaderLogo {}
+
+.HeaderLogoImage {}
+
+.HeaderMenu {}
+
+.HeaderMenuList {
+    display: flex;
+    column-gap: 40px;
+}
+
+.HeaderMenuItem {
+    list-style-type: none;
+}
+
+.HeaderMenuLink {
+    display: inline-flex;
+    align-items: center;
+    height: 70px;
+    text-decoration: none;
+    font-weight: 700;
 }

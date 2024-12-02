@@ -40,11 +40,21 @@ body {
     margin: 10rem auto;
 } */
 
+a {
+    transition: 0.2s;
+    text-decoration: none;
+    color: var(--color-purple-noactive);
+}
+
+a:hover {
+    color: var(--color-light-accent);
+}
+
 
 
 .App {
-    max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
-    margin: 10rem auto;
+    /* max-width: calc(var(--container-width) + var(--container-padding-x) * 2); */
+    /* margin: 10rem auto; */
     /* margin-inline: auto;
     padding-inline: var(--container-width); */
 }
