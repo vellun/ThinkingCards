@@ -1,5 +1,5 @@
--r dev.txt
 black==24.8.0
+django-debug-toolbar==4.4.6
 flake8==7.1.1
 flake8-quotes==3.4.0
 flake8-import-order==0.18.2
