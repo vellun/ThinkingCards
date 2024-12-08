@@ -1,27 +1,35 @@
 services:
   backend:
     build: ./justhink_server
-    container_name: justhink_backend
     volumes:
-      - static_volume:/justhink_server/static
-      - media_volume:/justhink_server/media
+      - static_files:/usr/src/app/static
+      - media_files:/usr/src/app/media
       - /tmp:/tmp
-    ports:
-      - "8000:8000"
     depends_on:
       - redis
     env_file:
-      - ./justhink_server/.env
+      - .env
 
   frontend:
     build: ./justhink_client
-    container_name: justhink_frontend
     ports:
       - "3000:3000"
     depends_on:
       - backend
     environment:
       - REACT_APP_API_URL=http://backend:8000
+
+  nginx:
+    build: ./nginx
+    depends_on:
+      - backend
+    volumes:
+      - static_files:/usr/src/app/static
+      - media_files:/usr/src/app/media
+    env_file:
+      - .env
+    ports:
+      - ${BACKEND_PORT}:80
 
   redis:
     image: redis:alpine
@@ -34,5 +42,5 @@ services:
       - "6379:6379"
 
 volumes:
-  static_volume:
-  media_volume:
+  static_files:
+  media_files:
