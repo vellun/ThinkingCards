@@ -8,7 +8,7 @@ dotenv.load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", default="reallysecret")
+SECRET_KEY = os.getenv("BACKEND_SECRET_KEY", default="reallysecret")
 
 TRUE_VALUES = (
     "true",
@@ -17,10 +17,10 @@ TRUE_VALUES = (
     "y",
 )
 
-DEBUG = os.getenv("DJANGO_DEBUG", default="False").lower() in TRUE_VALUES
+DEBUG = os.getenv("BACKEND_DEBUG", default="False").lower() in TRUE_VALUES
 
 ALLOWED_HOSTS = os.getenv(
-    "DJANGO_ALLOWED_HOSTS",
+    "BACKEND_ALLOWED_HOSTS",
     default="*",
 ).split(",")
 
@@ -60,12 +60,10 @@ if DEBUG:
 
 ROOT_URLCONF = "justhink.urls"
 
-TEMPLATES_DIRS = BASE_DIR / "templates"
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [TEMPLATES_DIRS],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -130,9 +128,9 @@ CACHES = {
 
 AUTH_USER_MODEL = "core.User"
 
-LANGUAGE_CODE = "ru"
+LANGUAGE_CODE = "ru-ru"
 
-TIME_ZONE = "Europe/Moscow"
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -157,7 +155,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=30),
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": datetime.timedelta(days=1),
 }
 
