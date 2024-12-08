@@ -18,7 +18,7 @@ jobs:
       - name: Install Dependencies 
         run: |
           python3 -m pip install --upgrade pip
-          pip install -r justhink_server/requirements/test.txt
+          pip install -r justhink_server/requirements/dev.txt
       - name: Run Tests
         run: |
           echo DJANGO_SECRET_KEY = django-insecure-dummy-secret > justhink_server/.env
