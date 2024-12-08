@@ -19,17 +19,25 @@ class PermissionsTests(TestCase):
         )
 
         self.test_public_deck = deck.models.Deck.objects.create(
-            name="test_pub_deck", author=self.deck_author, is_public=True,
+            name="test_pub_deck",
+            author=self.deck_author,
+            is_public=True,
         )
 
         self.test_unpublic_deck = deck.models.Deck.objects.create(
-            name="test_unpub_deck", author=self.deck_author, is_public=False,
+            name="test_unpub_deck",
+            author=self.deck_author,
+            is_public=False,
         )
 
         self.client = Client()
 
     @parameterized.parameterized.expand(
-        list(itertools.product(["user1", "user2"], [True, False], [http.HTTPStatus.OK]))
+        list(
+            itertools.product(
+                ["user1", "user2"], [True, False], [http.HTTPStatus.OK]
+            )
+        )
     )
     def test_get_deck_list(self, user, is_auth, status):
         if is_auth:
@@ -40,7 +48,11 @@ class PermissionsTests(TestCase):
         self.assertEqual(response.status_code, status)
 
     @parameterized.parameterized.expand(
-        list(itertools.product(["user1", "user2"], [True, False], [http.HTTPStatus.OK]))
+        list(
+            itertools.product(
+                ["user1", "user2"], [True, False], [http.HTTPStatus.OK]
+            )
+        )
     )
     def test_get_deck_detail(self, user, is_auth, status):
         if is_auth:

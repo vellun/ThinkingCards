@@ -15,7 +15,7 @@ class DeckSerializer(rest_framework.serializers.ModelSerializer):
             deck.models.Deck.name.field.name,
             deck.models.Deck.author.field.name,
             deck.models.Deck.is_public.field.name,
-            deck.models.Deck.language.field.name, 
+            deck.models.Deck.language.field.name,
         )
 
 

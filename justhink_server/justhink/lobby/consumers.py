@@ -35,4 +35,3 @@ class LobbyConsumer(channels.generic.websocket.AsyncWebsocketConsumer):
                 },
             ),
         )
-

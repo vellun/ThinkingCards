@@ -9,7 +9,6 @@ import django.core.cache
 
 class LobbyIdAPIView(views.APIView):
     def get(self, request):
-        
         uid = uuid.uuid4().hex
 
         django.core.cache.cache.set(
@@ -24,9 +23,7 @@ class LobbyAPIView(views.APIView):
         lobby_users = django.core.cache.cache.get(f"lobby-{uid}")
 
         if not lobby_users:
-            raise exceptions.NotFound(
-                detail="Lobby does not exist"
-            )
+            raise exceptions.NotFound(detail="Lobby does not exist")
 
         cur_user = request.user.username
 

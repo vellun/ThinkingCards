@@ -5,8 +5,6 @@ import deck.views
 app_name = "deck"
 
 
- 
-
 urlpatterns = [
     # django.urls.path(
     #     "",

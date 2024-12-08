@@ -1,8 +1,14 @@
-[tool.black]
+[tool.ruff]
 line-length = 79
-target-version = ["py312"]
-extend-exclude = """
-(
-    migrations
-)
-"""
+src = ["justhink"]
+target-version = "py312"
+
+[tool.ruff.lint]
+preview = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true

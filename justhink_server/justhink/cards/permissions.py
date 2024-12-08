@@ -7,4 +7,3 @@ class IsCardOwnerOrReadOnly(permissions.BasePermission):
             return True
 
         return obj.deck.author == request.user
- 
